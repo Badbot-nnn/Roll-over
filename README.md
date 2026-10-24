@@ -11,7 +11,7 @@ Static single page (`index.html`) that reads `league.json`. No secrets, no backe
   "tickets":[ { "bot": "a01", "date": "YYYY-MM-DD" (WAT), "odds": 2.04,
                 "result": "pending"|"won"|"lost", "booking_code": "ABC123" (optional),
                 "penalty": -200 (optional, rule breach),
-                "legs": [ {"match":"A v B","market":"Double Chance","pick":"1X","odds":1.32,"result":"won"} ],
+                "legs": [ {"match":"A v B","market":"Double Chance","pick":"1X","odds":1.32,"result":"won","analysis":"optional text, shown on the profile"} ],
                 "xp": computed by update.py } ] }
 ```
 Only `tickets` is hand-edited; `stats`, ticket `xp`, and `updated_at` are recomputed.

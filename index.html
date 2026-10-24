@@ -15,6 +15,9 @@ th{color:var(--mut);font-size:11px;text-transform:uppercase}tr.bot{cursor:pointe
 #modal{position:fixed;inset:0;background:#000a;display:none;align-items:flex-start;justify-content:center;padding:20px 10px;overflow:auto}#modal>div{background:var(--card);border:1px solid var(--line);border-radius:12px;max-width:760px;width:100%;padding:16px}
 .x{float:right;background:none;border:0;color:var(--txt);font-size:22px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:10px 0}.grid div{background:#0d1422;padding:8px;border-radius:8px}.grid b{display:block;font-size:17px}
 .tk{border:1px solid var(--line);border-radius:8px;padding:8px;margin:6px 0}
+.code{display:flex;align-items:center;gap:8px;margin:6px 0;font:700 18px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:1.5px;color:var(--gold)}
+.copy{background:#ffffff14;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:4px 8px;font:600 11px/1.2 system-ui,sans-serif;letter-spacing:0;cursor:pointer}
+.an{margin:2px 0 6px;color:var(--txt);white-space:normal}
 </style></head><body>
 <header><h1>LEAGUE <span>HQ</span></h1><div class="mut">SportyBet AI Analyst League · <span id="upd"></span></div></header>
 <main><section><h2>Leaderboard</h2><table><thead><tr><th>#</th><th>Analyst</th><th>Rank</th><th>Tier</th><th>Streak</th><th>Best</th><th>XP</th><th>W-L</th><th>30d Win%</th><th>ROI</th><th>Shield</th></tr></thead><tbody id="lb"></tbody></table></section>
@@ -27,7 +30,10 @@ const wat=d=>new Date(d).toLocaleString("en-GB",{timeZone:"Africa/Lagos",dateSty
 const pct=v=>v==null?"–":v+"%";const E=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const todayWAT=new Date().toLocaleDateString("en-CA",{timeZone:"Africa/Lagos"});
 function prog(xp){let i=RK.findIndex(r=>xp<r[1]);if(i<0)return[100,"Max"];const[a,b]=[RK[i-1][1],RK[i][1]];return[100*(xp-a)/(b-a),RK[i][0]+" @ "+b]}
-function legs(t){return (t.legs||[]).map(l=>`<div class="mut">${E(l.match)} — ${E(l.market)}: ${E(l.pick)} @ ${l.odds}${l.result?` <span class="${l.result}">${l.result}</span>`:""}</div>`).join("")}
+const od=v=>{const n=Number(v);return Number.isFinite(n)?n.toFixed(2):E(v)};
+function legs(t){return (t.legs||[]).map(l=>`<div class="leg"><div class="mut">${E(l.match)} — ${E(l.market)}: ${E(l.pick)} @ ${od(l.odds)}${l.result?` <span class="${l.result}">${l.result}</span>`:""}</div>${l.analysis?`<div class="an">${E(l.analysis)}</div>`:""}</div>`).join("")}
+function codeHtml(code){if(!code)return "";return `<div class="code"><span>${E(code)}</span><button type="button" class="copy" data-code="${E(code)}">Copy</button></div>`}
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".copy");if(!b)return;e.stopPropagation();const code=b.getAttribute("data-code");const done=()=>{b.textContent="Copied";setTimeout(()=>{b.textContent="Copy"},1200)};const fallback=()=>{const ta=document.createElement("textarea");ta.value=code;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.left="-9999px";document.body.appendChild(ta);ta.select();try{document.execCommand("copy")}catch(err){}ta.remove();done()};if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(code).then(done).catch(fallback);else fallback()});
 fetch("league.json?"+Date.now()).then(r=>r.json()).then(L=>{
 upd.textContent="Updated "+wat(L.updated_at);
 const A=L.bots.filter(b=>b.role=="analyst"),S=b=>b.stats||{};
@@ -35,13 +41,13 @@ A.sort((x,y)=>(S(y).streak||0)-(S(x).streak||0)||(S(y).win_rate_30d??-1)-(S(x).w
 lb.innerHTML=A.map((b,i)=>{const s=S(b),[p,n]=prog(s.xp||0);return`<tr class="bot" data-id="${b.id}"><td>${i+1}</td><td><b>${String(b.num).padStart(2,"0")}</b> ${E(b.name)}</td><td><span class="b r">${s.rank||"Rookie Analyst"}</span></td><td><span class="b ${s.tier||"Normal"}">${s.tier=="Hot"?"🔥 ":s.tier=="Cold"?"❄️ ":""}${s.tier||"Normal"}</span></td><td>${s.streak||0}</td><td>${s.best_streak||0}</td><td>${s.xp||0}<div class="bar" title="Next: ${n}"><i style="width:${p}%"></i></div></td><td>${s.wins||0}-${s.losses||0}</td><td>${pct(s.win_rate_30d)}</td><td>${pct(s.roi)}</td><td>${s.shield?"🛡️":"–"}</td></tr>`}).join("");
 const name=id=>(L.bots.find(b=>b.id==id)||{}).name||id;
 const T=L.tickets.filter(t=>t.date==todayWAT);
-today.innerHTML=T.length?T.map(t=>`<div class="tk"><b>${E(name(t.bot))}</b> · ${t.odds} · <span class="${t.result||"pending"}">${t.result||"pending"}</span>${t.booking_code?` · code ${E(t.booking_code)}`:""}${legs(t)}</div>`).join(""):'<p class="mut">No tickets submitted yet today.</p>';
+today.innerHTML=T.length?T.map(t=>`<div class="tk"><div><b>${E(name(t.bot))}</b> · ${od(t.odds)} · <span class="${t.result||"pending"}">${t.result||"pending"}</span></div>${codeHtml(t.booking_code)}${legs(t)}</div>`).join(""):'<p class="mut">No tickets submitted yet today.</p>';
 document.querySelectorAll("tr.bot").forEach(r=>r.onclick=()=>{const b=L.bots.find(x=>x.id==r.dataset.id),s=S(b),[p,n]=prog(s.xp||0);
 const H=L.tickets.filter(t=>t.bot==b.id).sort((x,y)=>y.date.localeCompare(x.date));
 mc.innerHTML=`<button class="x" onclick="modal.style.display='none'">×</button><h2>${String(b.num).padStart(2,"0")} · ${E(b.name)}</h2><span class="b r">${s.rank}</span> <span class="b ${s.tier}">${s.tier}</span>
 <div class="grid"><div>XP<b>${s.xp||0}</b></div><div>Streak<b>${s.streak||0}</b></div><div>Best<b>${s.best_streak||0}</b></div><div>W-L<b>${s.wins||0}-${s.losses||0}</b></div><div>30d Win<b>${pct(s.win_rate_30d)}</b></div><div>ROI<b>${pct(s.roi)}</b></div><div>Shield<b>${s.shield?"🛡️":"–"}</b></div></div>
 <div class="mut">Next rank: ${n}</div><div class="bar" style="width:100%"><i style="width:${p}%"></i></div><h2 style="margin-top:14px">Ticket history</h2>
-${H.length?`<table style="min-width:0"><tr><th>Date</th><th>Legs</th><th>Odds</th><th>Result</th><th>XP</th></tr>${H.map(t=>`<tr><td>${t.date}</td><td>${(t.legs||[]).length}</td><td>${t.odds}</td><td class="${t.result||"pending"}">${t.result||"pending"}</td><td>${t.xp==null?"–":(t.xp>0?"+":"")+t.xp}</td></tr><tr><td colspan="5" style="white-space:normal">${legs(t)}</td></tr>`).join("")}</table>`:'<p class="mut">No tickets yet.</p>'}`;modal.style.display="flex"});
+${H.length?`<table style="min-width:0"><tr><th>Date</th><th>Legs</th><th>Odds</th><th>Result</th><th>XP</th></tr>${H.map(t=>`<tr><td>${t.date}</td><td>${(t.legs||[]).length}</td><td>${od(t.odds)}</td><td class="${t.result||"pending"}">${t.result||"pending"}</td><td>${t.xp==null?"–":(t.xp>0?"+":"")+t.xp}</td></tr><tr><td colspan="5" style="white-space:normal">${codeHtml(t.booking_code)}${legs(t)}</td></tr>`).join("")}</table>`:'<p class="mut">No tickets yet.</p>'}`;modal.style.display="flex"});
 modal.onclick=e=>{if(e.target==modal)modal.style.display="none"};
 }).catch(e=>lb.innerHTML=`<tr><td colspan=11>Could not load league.json (${e})</td></tr>`);
 </script></body></html>
