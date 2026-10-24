@@ -15,8 +15,10 @@ th{color:var(--mut);font-size:11px;text-transform:uppercase}tr.bot{cursor:pointe
 #modal{position:fixed;inset:0;background:#000a;display:none;align-items:flex-start;justify-content:center;padding:20px 10px;overflow:auto}#modal>div{background:var(--card);border:1px solid var(--line);border-radius:12px;max-width:760px;width:100%;padding:16px}
 .x{float:right;background:none;border:0;color:var(--txt);font-size:22px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:10px 0}.grid div{background:#0d1422;padding:8px;border-radius:8px}.grid b{display:block;font-size:17px}
 .tk{border:1px solid var(--line);border-radius:8px;padding:8px;margin:6px 0}
-.code{display:flex;align-items:center;gap:8px;margin:6px 0;font:700 18px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:1.5px;color:var(--gold)}
-.copy{background:#ffffff14;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:4px 8px;font:600 11px/1.2 system-ui,sans-serif;letter-spacing:0;cursor:pointer}
+button.code{display:flex;align-items:center;gap:8px;margin:6px 0;padding:0;background:none;border:0;cursor:pointer;font:700 18px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:1.5px;color:var(--gold)}
+button.code.on{color:var(--acc)}
+.copy-label{background:#ffffff14;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:4px 8px;font:600 11px/1.2 system-ui,sans-serif;letter-spacing:0}
+button.code.on .copy-label{background:var(--acc);color:#042;border-color:var(--acc)}
 .an{margin:2px 0 6px;color:var(--txt);white-space:normal}
 </style></head><body>
 <header><h1>LEAGUE <span>HQ</span></h1><div class="mut">SportyBet AI Analyst League · <span id="upd"></span></div></header>
@@ -32,8 +34,8 @@ const todayWAT=new Date().toLocaleDateString("en-CA",{timeZone:"Africa/Lagos"});
 function prog(xp){let i=RK.findIndex(r=>xp<r[1]);if(i<0)return[100,"Max"];const[a,b]=[RK[i-1][1],RK[i][1]];return[100*(xp-a)/(b-a),RK[i][0]+" @ "+b]}
 const od=v=>{const n=Number(v);return Number.isFinite(n)?n.toFixed(2):E(v)};
 function legs(t){return (t.legs||[]).map(l=>`<div class="leg"><div class="mut">${E(l.match)} — ${E(l.market)}: ${E(l.pick)} @ ${od(l.odds)}${l.result?` <span class="${l.result}">${l.result}</span>`:""}</div>${l.analysis?`<div class="an">${E(l.analysis)}</div>`:""}</div>`).join("")}
-function codeHtml(code){if(!code)return "";return `<div class="code"><span>${E(code)}</span><button type="button" class="copy" data-code="${E(code)}">Copy</button></div>`}
-document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".copy");if(!b)return;e.preventDefault();e.stopPropagation();const code=b.getAttribute("data-code");try{const ta=document.createElement("textarea");ta.value=code;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.left="-9999px";document.body.appendChild(ta);ta.focus();ta.select();document.execCommand("copy");ta.remove()}catch(err){}if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(code).catch(()=>{});b.textContent="Copied";clearTimeout(b._t);b._t=setTimeout(()=>{b.textContent="Copy"},1200)});
+function codeHtml(code){if(!code)return "";return `<button type="button" class="code copy" data-code="${E(code)}"><span class="code-val">${E(code)}</span><span class="copy-label">Copy</span></button>`}
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".copy");if(!b)return;e.preventDefault();e.stopPropagation();const code=b.getAttribute("data-code");try{const ta=document.createElement("textarea");ta.value=code;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.left="-9999px";document.body.appendChild(ta);ta.focus();ta.select();document.execCommand("copy");ta.remove()}catch(err){}if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(code).catch(()=>{});const label=b.querySelector(".copy-label");if(label)label.textContent="Copied";b.classList.add("on");clearTimeout(b._t);b._t=setTimeout(()=>{if(label)label.textContent="Copy";b.classList.remove("on")},2500)});
 fetch("league.json?"+Date.now()).then(r=>r.json()).then(L=>{
 upd.textContent="Updated "+wat(L.updated_at);
 const A=L.bots.filter(b=>b.role=="analyst"),S=b=>b.stats||{};
