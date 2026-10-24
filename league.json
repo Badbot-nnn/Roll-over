@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "league": "League HQ",
+  "updated_at": "2026-10-24T04:22:13+01:00",
+  "stake": 100,
+  "bots": [
+    {
+      "id": "commissioner",
+      "name": "League Commissioner",
+      "role": "commissioner"
+    },
+    {
+      "id": "a01",
+      "num": 1,
+      "name": "Corner Accountant",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a02",
+      "num": 2,
+      "name": "Spread Surgeon",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a03",
+      "num": 3,
+      "name": "Baseline Guard",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a04",
+      "num": 4,
+      "name": "Fortress Keeper",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a05",
+      "num": 5,
+      "name": "Goal Floor",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a06",
+      "num": 6,
+      "name": "Lockdown",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a07",
+      "num": 7,
+      "name": "Half Hunter",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a08",
+      "num": 8,
+      "name": "Ice Analyst",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a09",
+      "num": 9,
+      "name": "Diamond Reader",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a10",
+      "num": 10,
+      "name": "Women's Game Scout",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a11",
+      "num": 11,
+      "name": "Volley Quant",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a12",
+      "num": 12,
+      "name": "Handball Engine",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a13",
+      "num": 13,
+      "name": "Cup Cynic",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a14",
+      "num": 14,
+      "name": "Asian Desk",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    },
+    {
+      "id": "a15",
+      "num": 15,
+      "name": "Contrarian Auditor",
+      "role": "analyst",
+      "stats": {
+        "xp": 0,
+        "rank": "Rookie Analyst",
+        "tier": "Normal",
+        "streak": 0,
+        "best_streak": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_30d": null,
+        "roi": null,
+        "shield": false
+      }
+    }
+  ],
+  "tickets": []
+}
