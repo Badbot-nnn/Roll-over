@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "league": "League HQ",
-  "updated_at": "2026-10-25T07:07:02+01:00",
-  "stake": 100,
+  "updated_at": "2026-10-25T07:11:11+01:00",
+  "stake": 1,
   "bots": [
     {
       "id": "commissioner",
@@ -22,8 +22,9 @@
         "best_streak": 0,
         "wins": 0,
         "losses": 1,
+        "win_rate": 0.0,
         "win_rate_30d": 0.0,
-        "roi": -100.0,
+        "roi": -1.0,
         "shield": false
       }
     },
@@ -40,8 +41,9 @@
         "best_streak": 1,
         "wins": 1,
         "losses": 0,
+        "win_rate": 100.0,
         "win_rate_30d": 100.0,
-        "roi": 112.0,
+        "roi": 1.12,
         "shield": false
       }
     },
@@ -58,8 +60,9 @@
         "best_streak": 0,
         "wins": 0,
         "losses": 1,
+        "win_rate": 0.0,
         "win_rate_30d": 0.0,
-        "roi": -100.0,
+        "roi": -1.0,
         "shield": false
       }
     },
@@ -76,8 +79,9 @@
         "best_streak": 0,
         "wins": 0,
         "losses": 1,
+        "win_rate": 0.0,
         "win_rate_30d": 0.0,
-        "roi": -100.0,
+        "roi": -1.0,
         "shield": false
       }
     },
@@ -94,8 +98,9 @@
         "best_streak": 0,
         "wins": 0,
         "losses": 1,
+        "win_rate": 0.0,
         "win_rate_30d": 0.0,
-        "roi": -100.0,
+        "roi": -1.0,
         "shield": false
       }
     },
@@ -112,8 +117,9 @@
         "best_streak": 1,
         "wins": 1,
         "losses": 0,
+        "win_rate": 100.0,
         "win_rate_30d": 100.0,
-        "roi": 107.0,
+        "roi": 1.07,
         "shield": false
       }
     },
@@ -130,8 +136,9 @@
         "best_streak": 1,
         "wins": 1,
         "losses": 0,
+        "win_rate": 100.0,
         "win_rate_30d": 100.0,
-        "roi": 101.0,
+        "roi": 1.01,
         "shield": false
       }
     },
@@ -148,8 +155,9 @@
         "best_streak": 0,
         "wins": 0,
         "losses": 1,
+        "win_rate": 0.0,
         "win_rate_30d": 0.0,
-        "roi": -100.0,
+        "roi": -1.0,
         "shield": false
       }
     },
@@ -166,8 +174,9 @@
         "best_streak": 1,
         "wins": 1,
         "losses": 0,
+        "win_rate": 100.0,
         "win_rate_30d": 100.0,
-        "roi": 83.0,
+        "roi": 0.83,
         "shield": false
       }
     },
@@ -184,8 +193,9 @@
         "best_streak": 1,
         "wins": 1,
         "losses": 0,
+        "win_rate": 100.0,
         "win_rate_30d": 100.0,
-        "roi": 103.0,
+        "roi": 1.03,
         "shield": false
       }
     },
@@ -202,8 +212,9 @@
         "best_streak": 0,
         "wins": 0,
         "losses": 1,
+        "win_rate": 0.0,
         "win_rate_30d": 0.0,
-        "roi": -100.0,
+        "roi": -1.0,
         "shield": false
       }
     },
@@ -220,8 +231,9 @@
         "best_streak": 0,
         "wins": 0,
         "losses": 1,
+        "win_rate": 0.0,
         "win_rate_30d": 0.0,
-        "roi": -100.0,
+        "roi": -1.0,
         "shield": false
       }
     },
@@ -238,8 +250,9 @@
         "best_streak": 1,
         "wins": 1,
         "losses": 0,
+        "win_rate": 100.0,
         "win_rate_30d": 100.0,
-        "roi": 115.0,
+        "roi": 1.15,
         "shield": false
       }
     },
@@ -256,8 +269,9 @@
         "best_streak": 0,
         "wins": 0,
         "losses": 1,
+        "win_rate": 0.0,
         "win_rate_30d": 0.0,
-        "roi": -100.0,
+        "roi": -1.0,
         "shield": false
       }
     },
@@ -274,8 +288,9 @@
         "best_streak": 1,
         "wins": 1,
         "losses": 0,
+        "win_rate": 100.0,
         "win_rate_30d": 100.0,
-        "roi": 109.0,
+        "roi": 1.09,
         "shield": false
       }
     }
@@ -696,6 +711,15 @@
         }
       ],
       "xp": 80.5
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "date": "2026-10-24",
+      "won": 7,
+      "lost": 8,
+      "summary": "Round 1 · Sat 24 Oct · 7 won, 8 lost"
     }
   ]
 }

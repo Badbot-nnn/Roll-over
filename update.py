@@ -6,6 +6,8 @@ L=json.load(open("league.json")); WAT=dt.timezone(dt.timedelta(hours=1))
 RANKS=[("Legendary Oracle",10000,14,True),("Master Predictor",4000,7,False),("Pro Strategist",1000,0,False),("Rookie Analyst",0,0,False)]
 def smult(s): return 2.0 if s>=14 else 1.5 if s>=7 else 1.25 if s>=3 else 1.0
 today=dt.datetime.now(WAT).date()
+DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
+MONS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 for b in L["bots"]:
     if b["role"]!="analyst": continue
     T=sorted([t for t in L["tickets"] if t["bot"]==b["id"]],key=lambda t:t["date"])
@@ -31,7 +33,17 @@ for b in L["bots"]:
     rank=next(r for r,x,s,roi in RANKS if xp>=x and best>=s and (not roi or ret>stake))
     tier="Hot" if streak>=5 else "Cold" if last_loss and (today-last_loss).days<=2 else "Normal"
     b["stats"]=dict(xp=round(xp,1),rank=rank,tier=tier,streak=streak,best_streak=best,wins=w,losses=l,
+      win_rate=round(100*w/(w+l),1) if w+l else None,
       win_rate_30d=round(100*sum(t["result"]=="won" for t in s30)/len(s30),1) if s30 else None,
-      roi=round(100*(ret-stake)/stake,1) if stake else None,shield=shield)
+      roi=round((ret-stake)/L["stake"],2) if stake else None,shield=shield)
+by={}
+for t in L["tickets"]:
+    if t.get("result") not in ("won","lost"): continue
+    rec=by.setdefault(t["date"],{"won":0,"lost":0}); rec[t["result"]]+=1
+L["rounds"]=[]
+for i,d in enumerate(sorted(by),1):
+    day=dt.date.fromisoformat(d); w,ls=by[d]["won"],by[d]["lost"]
+    when=f"{DAYS[day.weekday()]} {day.day} {MONS[day.month-1]}"
+    L["rounds"].append({"round":i,"date":d,"won":w,"lost":ls,"summary":f"Round {i} · {when} · {w} won, {ls} lost"})
 L["updated_at"]=dt.datetime.now(WAT).isoformat(timespec="seconds")
-json.dump(L,open("league.json","w"),indent=2); print("updated",L["updated_at"])
+json.dump(L,open("league.json","w"),indent=2,ensure_ascii=False); print("updated",L["updated_at"])
