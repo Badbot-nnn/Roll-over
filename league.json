@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "league": "League HQ",
-  "updated_at": "2026-10-26T06:19:55+01:00",
+  "updated_at": "2026-10-26T06:36:32+01:00",
   "stake": 1,
   "bots": [
     {
@@ -1078,6 +1078,297 @@
         }
       ],
       "xp": -43.7
+    },
+    {
+      "bot": "a01",
+      "date": "2026-10-26",
+      "result": "pending",
+      "legs": [],
+      "xp": null
+    },
+    {
+      "bot": "a02",
+      "date": "2026-10-26",
+      "odds": 2.09,
+      "result": "pending",
+      "booking_code": "W87Z08",
+      "legs": [
+        {
+          "match": "Sevilla v Osasuna",
+          "market": "Draw No Bet",
+          "pick": "Sevilla",
+          "odds": 1.4
+        },
+        {
+          "match": "Lokomotiv Plovdiv v Slavia Sofia",
+          "market": "Over/Under",
+          "pick": "Under 2.5",
+          "odds": 1.49
+        }
+      ],
+      "xp": null
+    },
+    {
+      "bot": "a03",
+      "date": "2026-10-26",
+      "odds": 1.9,
+      "result": "pending",
+      "booking_code": "U309E0",
+      "legs": [
+        {
+          "match": "de Minaur v Machac",
+          "market": "Match Winner",
+          "pick": "de Minaur",
+          "odds": 1.37
+        },
+        {
+          "match": "PSG v Lyon",
+          "market": "Match Winner",
+          "pick": "PSG",
+          "odds": 1.39
+        }
+      ],
+      "xp": null
+    },
+    {
+      "bot": "a04",
+      "date": "2026-10-26",
+      "odds": 2.04,
+      "result": "pending",
+      "booking_code": "JN5KXF",
+      "legs": [
+        {
+          "match": "Vacherot v Navone",
+          "market": "Match Winner",
+          "pick": "Vacherot",
+          "odds": 1.51
+        },
+        {
+          "match": "Ruud v Stricker",
+          "market": "Match Winner",
+          "pick": "Ruud",
+          "odds": 1.35
+        }
+      ],
+      "xp": null
+    },
+    {
+      "bot": "a05",
+      "date": "2026-10-26",
+      "odds": 1.95,
+      "result": "pending",
+      "booking_code": "UG91NN",
+      "legs": [
+        {
+          "match": "Rizespor v Trabzonspor",
+          "market": "Over/Under",
+          "pick": "Over 1.5",
+          "odds": 1.19
+        },
+        {
+          "match": "Galatasaray v Fenerbahce",
+          "market": "Over/Under",
+          "pick": "Over 1.5",
+          "odds": 1.16
+        },
+        {
+          "match": "Benfica @ Santa Clara",
+          "market": "Match Winner",
+          "pick": "Benfica",
+          "odds": 1.41
+        }
+      ],
+      "xp": null
+    },
+    {
+      "bot": "a06",
+      "date": "2026-10-26",
+      "odds": 1.93,
+      "result": "pending",
+      "booking_code": "GQ9K6F",
+      "legs": [
+        {
+          "match": "Orebro v Falkenberg",
+          "market": "Over/Under",
+          "pick": "Under 3.5",
+          "odds": 1.41
+        },
+        {
+          "match": "Defensores de Belgrano v San Miguel",
+          "market": "Over/Under",
+          "pick": "Under 2.5",
+          "odds": 1.37
+        }
+      ],
+      "xp": null
+    },
+    {
+      "bot": "a07",
+      "date": "2026-10-26",
+      "odds": 1.8,
+      "result": "pending",
+      "booking_code": "Y2N4AD",
+      "legs": [
+        {
+          "match": "Torreense v Amarante",
+          "market": "Draw No Bet",
+          "pick": "Torreense",
+          "odds": 1.32
+        },
+        {
+          "match": "Montpellier v Red Star",
+          "market": "Double Chance",
+          "pick": "1X",
+          "odds": 1.36
+        }
+      ],
+      "xp": null
+    },
+    {
+      "bot": "a08",
+      "date": "2026-10-26",
+      "result": "pending",
+      "legs": [],
+      "xp": null
+    },
+    {
+      "bot": "a09",
+      "date": "2026-10-26",
+      "odds": 1.85,
+      "result": "pending",
+      "booking_code": "N7XNML",
+      "legs": [
+        {
+          "match": "Riga @ Grobina",
+          "market": "Match Winner",
+          "pick": "Riga",
+          "odds": 1.2
+        },
+        {
+          "match": "Craiova @ Sepsi",
+          "market": "Match Winner",
+          "pick": "Craiova",
+          "odds": 1.54
+        }
+      ],
+      "xp": null
+    },
+    {
+      "bot": "a10",
+      "date": "2026-10-26",
+      "odds": 1.9,
+      "result": "pending",
+      "booking_code": "H3JGBL",
+      "legs": [
+        {
+          "match": "Guadalajara W @ Atlante W",
+          "market": "Match Winner",
+          "pick": "Guadalajara W",
+          "odds": 1.29
+        },
+        {
+          "match": "Juventude v Nautico",
+          "market": "Match Winner",
+          "pick": "Juventude",
+          "odds": 1.47
+        }
+      ],
+      "xp": null
+    },
+    {
+      "bot": "a11",
+      "date": "2026-10-26",
+      "result": "pending",
+      "legs": [],
+      "xp": null
+    },
+    {
+      "bot": "a12",
+      "date": "2026-10-26",
+      "odds": 2.06,
+      "result": "pending",
+      "booking_code": "LP9XPA",
+      "legs": [
+        {
+          "match": "Copenhagen v OB",
+          "market": "Match Winner",
+          "pick": "Copenhagen",
+          "odds": 1.48
+        },
+        {
+          "match": "Besiktas v Basaksehir",
+          "market": "Match Winner",
+          "pick": "Besiktas",
+          "odds": 1.39
+        }
+      ],
+      "xp": null
+    },
+    {
+      "bot": "a13",
+      "date": "2026-10-26",
+      "odds": 1.87,
+      "result": "pending",
+      "booking_code": "J9AQ4Q",
+      "legs": [
+        {
+          "match": "Maccabi Haifa v Hapoel Beer Sheva",
+          "market": "BTTS",
+          "pick": "Yes",
+          "odds": 1.45
+        },
+        {
+          "match": "FC Andorra v Burgos",
+          "market": "Over/Under",
+          "pick": "Under 3.5",
+          "odds": 1.29
+        }
+      ],
+      "xp": null
+    },
+    {
+      "bot": "a14",
+      "date": "2026-10-26",
+      "odds": 2.09,
+      "result": "pending",
+      "booking_code": "K5WWQE",
+      "legs": [
+        {
+          "match": "Tien v Van Assche",
+          "market": "Match Winner",
+          "pick": "Tien",
+          "odds": 1.42
+        },
+        {
+          "match": "Borges v Brunold",
+          "market": "Match Winner",
+          "pick": "Borges",
+          "odds": 1.47
+        }
+      ],
+      "xp": null
+    },
+    {
+      "bot": "a15",
+      "date": "2026-10-26",
+      "odds": 2.1,
+      "result": "pending",
+      "booking_code": "YW6CME",
+      "legs": [
+        {
+          "match": "U de Chile v Everton",
+          "market": "Over/Under",
+          "pick": "Under 3.5",
+          "odds": 1.5
+        },
+        {
+          "match": "Union Santa Fe v Estudiantes",
+          "market": "Over/Under",
+          "pick": "Over 1.5",
+          "odds": 1.4
+        }
+      ],
+      "xp": null
     }
   ],
   "rounds": [
