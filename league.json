@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "league": "League HQ",
-  "updated_at": "2026-10-26T06:36:32+01:00",
+  "updated_at": "2026-10-26T06:43:46+01:00",
   "stake": 1,
   "bots": [
     {
@@ -1082,8 +1082,23 @@
     {
       "bot": "a01",
       "date": "2026-10-26",
+      "odds": 1.85,
       "result": "pending",
-      "legs": [],
+      "booking_code": "RZTX9M",
+      "legs": [
+        {
+          "match": "Istra v Hajduk",
+          "market": "Over/Under",
+          "pick": "Under 3.5",
+          "odds": 1.48
+        },
+        {
+          "match": "America MG v Cuiaba",
+          "market": "Over/Under",
+          "pick": "Under 3.5",
+          "odds": 1.25
+        }
+      ],
       "xp": null
     },
     {
@@ -1227,8 +1242,23 @@
     {
       "bot": "a08",
       "date": "2026-10-26",
+      "odds": 1.86,
       "result": "pending",
-      "legs": [],
+      "booking_code": "Z347ZH",
+      "legs": [
+        {
+          "match": "Frederikshavn v Odense",
+          "market": "Regulation",
+          "pick": "Over 4.5",
+          "odds": 1.58
+        },
+        {
+          "match": "SonderjyskE v Aalborg",
+          "market": "Team Total",
+          "pick": "SonderjyskE Over 1.5",
+          "odds": 1.18
+        }
+      ],
       "xp": null
     },
     {
