@@ -5,6 +5,7 @@ import json,math,datetime as dt
 L=json.load(open("league.json")); WAT=dt.timezone(dt.timedelta(hours=1))
 RANKS=[("Legendary Oracle",10000,14,True),("Master Predictor",4000,7,False),("Pro Strategist",1000,0,False),("Rookie Analyst",0,0,False)]
 def smult(s): return 2.0 if s>=14 else 1.5 if s>=7 else 1.25 if s>=3 else 1.0
+def discipline(s): return "5+" if s>=5 else "3-win" if s>=3 else "2-win" if s>=2 else "Base"
 today=dt.datetime.now(WAT).date()
 DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
 MONS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
@@ -33,7 +34,7 @@ for b in L["bots"]:
     s30=[t for t in T if t.get("result") in("won","lost") and (today-dt.date.fromisoformat(t["date"])).days<30]
     rank=next(r for r,x,s,roi in RANKS if xp>=x and best>=s and (not roi or ret>stake))
     tier="Hot" if streak>=5 else "Cold" if last_loss and (today-last_loss).days<=2 else "Normal"
-    b["stats"]=dict(xp=round(xp,1),rank=rank,tier=tier,streak=streak,best_streak=best,wins=w,losses=l,
+    b["stats"]=dict(xp=round(xp,1),rank=rank,tier=tier,streak=streak,streak_tier=discipline(streak),best_streak=best,wins=w,losses=l,
       win_rate=round(100*w/(w+l),1) if w+l else None,
       win_rate_30d=round(100*sum(t["result"]=="won" for t in s30)/len(s30),1) if s30 else None,
       roi=round((ret-stake)/L["stake"],2) if stake else None,shield=shield)

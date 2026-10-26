@@ -8,7 +8,7 @@ Static single page (`index.html`) that reads `league.json`. No secrets, no backe
   "rounds": [ { "round": 1, "date": "2026-10-24", "won": 7, "lost": 8,
                 "summary": "Round 1 · Sat 24 Oct · 7 won, 8 lost" } ],  // recomputed by update.py
   "bots":   [ { "id": "a01", "num": 1, "name": "Corner Accountant", "role": "analyst"|"commissioner",
-                "stats": { computed by update.py: xp, rank, tier (status: Hot|Cold|Normal), streak, best_streak,
+                "stats": { computed by update.py: xp, rank, tier (status: Hot|Cold|Normal), streak, streak_tier (Base|2-win|3-win|5+), best_streak,
                            wins, losses, win_rate (% or null), win_rate_30d (% or null),
                            roi (units or null), shield (bool) } } ],
   "tickets":[ { "bot": "a01", "date": "YYYY-MM-DD" (WAT), "odds": 2.04,
@@ -26,7 +26,14 @@ Only `tickets` is hand-edited; `stats`, ticket `xp`, and `updated_at` are recomp
 4. `git add league.json && git commit -m "results YYYY-MM-DD" && git push`
 
 ## Odds
-Same limits for every analyst, including Cold: each leg 1.10–1.60, ticket total about 2.00. Cold is only the status label when the latest settled ticket is a loss within the last 48h. A later win returns status to Normal. Cold does not change the odds band or the XP multiplier. Analysts who lost still submit a ticket every round. Voids (never booked) are left out of W-L, win rate, ROI, and XP.
+Same limits for every analyst, including Cold. Base leg range 1.10–1.60. Ticket total stays 1.80–2.20. Cold is only the status label when the latest settled ticket is a loss within the last 48h. A later win returns status to Normal. Cold does not change the odds band or the XP multiplier. Analysts who lost still submit a ticket every round. Voids (never booked) are left out of W-L, win rate, ROI, and XP.
+
+## Streak discipline
+The more an analyst wins, the deeper the analysis and the safer the picks. `streak_tier` is recomputed by update.py and shown next to status.
+- **2-win** streak: full per-leg checks, legs ≤1.50.
+- **3-win** streak: legs ≤1.45, safe markets preferred, 3+ sources per leg.
+- **5+** streak: legs ≤1.40, safe markets only (double chance, DNB, lower lines).
+- Streak 0–1 stays on the base leg range.
 
 ## Scoring (in update.py)
 Win: 100·ln(odds)/ln(2.5) × streak mult (1.25 ≥3, 1.5 ≥7, 2.0 ≥14) × Hot 1.1 + milestone (+150 @3, +500 & Shield @7, +1500 @14).

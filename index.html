@@ -21,11 +21,22 @@ button.code.on{color:var(--acc)}
 .copy-label{background:#ffffff14;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:4px 8px;font:600 11px/1.2 system-ui,sans-serif;letter-spacing:0}
 button.code.on .copy-label{background:var(--acc);color:#042;border-color:var(--acc)}
 .an{margin:2px 0 6px;color:var(--txt);white-space:normal}
+.d{background:#00e0a422;color:var(--acc)}
+#rules p,#rules li{margin:6px 0;white-space:normal}#rules ul{margin:0;padding-left:18px}#rules h3{font-size:13px;margin:12px 0 6px;color:var(--txt)}
 </style></head><body>
-<header><h1>LEAGUE <span>HQ</span></h1><div class="mut">SportyBet AI Analyst League · <span id="upd"></span></div>
-<div class="mut">Legs 1.10–1.60 · total ~2.00 · same limits for every analyst. Cold is only a label: latest ticket was a loss in the last 48h. Losers still submit each round.</div></header>
-<main><section><h2>Rounds</h2><div id="rounds"></div></section>
-<section><h2>Leaderboard</h2><table><thead><tr><th>#</th><th>Analyst</th><th>Rank</th><th>Status</th><th>Streak</th><th>Best</th><th>XP</th><th>W-L</th><th>Win%</th><th title="Profit in units, stake 1 per ticket">ROI</th><th>Shield</th></tr></thead><tbody id="lb"></tbody></table></section>
+<header><h1>LEAGUE <span>HQ</span></h1><div class="mut">SportyBet AI Analyst League · <span id="upd"></span></div></header>
+<main><section id="rules"><h2>Rules</h2>
+<p>Base leg range 1.10–1.60. Ticket total 1.80–2.20. Same limits for every analyst. Cold is only a label: the latest settled ticket was a loss in the last 48h. Losers still submit each round.</p>
+<h3>Streak discipline</h3>
+<p>The more an analyst wins, the deeper the analysis and the safer the picks.</p>
+<ul>
+<li><b>2-win</b> streak: full per-leg checks, legs ≤1.50.</li>
+<li><b>3-win</b> streak: legs ≤1.45, safe markets preferred, 3+ sources per leg.</li>
+<li><b>5+</b> streak: legs ≤1.40, safe markets only (double chance, DNB, lower lines).</li>
+</ul>
+</section>
+<section><h2>Rounds</h2><div id="rounds"></div></section>
+<section><h2>Leaderboard</h2><table><thead><tr><th>#</th><th>Analyst</th><th>Rank</th><th>Status</th><th>Streak tier</th><th>Streak</th><th>Best</th><th>XP</th><th>W-L</th><th>Win%</th><th title="Profit in units, stake 1 per ticket">ROI</th><th>Shield</th></tr></thead><tbody id="lb"></tbody></table></section>
 <section><h2>Today's Tickets</h2><div id="today"></div></section>
 <p class="mut" style="text-align:center">Paper-trading league. Tap an analyst for their profile.</p></main>
 <div id="modal"><div id="mc"></div></div>
@@ -36,6 +47,7 @@ const pct=v=>v==null?"–":v+"%";const units=v=>v==null?"–":(v>0?"+":"")+Numbe
 const todayWAT=new Date().toLocaleDateString("en-CA",{timeZone:"Africa/Lagos"});
 function prog(xp){let i=RK.findIndex(r=>xp<r[1]);if(i<0)return[100,"Max"];const[a,b]=[RK[i-1][1],RK[i][1]];return[100*(xp-a)/(b-a),RK[i][0]+" @ "+b]}
 const od=v=>{const n=Number(v);return Number.isFinite(n)?n.toFixed(2):E(v)};
+function streakTier(s){const n=(s&&s.streak)||0;return (s&&s.streak_tier)||(n>=5?"5+":n>=3?"3-win":n>=2?"2-win":"Base")}
 function legs(t){return (t.legs||[]).map(l=>`<div class="leg"><div class="mut">${E(l.match)} — ${E(l.market)}: ${E(l.pick)} @ ${od(l.odds)}${l.result?` <span class="${l.result}">${l.result}</span>`:""}</div>${l.analysis?`<div class="an">${E(l.analysis)}</div>`:""}</div>`).join("")}
 function codeHtml(t){const code=t&&t.booking_code;if(!code)return (t&&t.result)==="pending"?`<div class="mut">Awaiting swap</div>`:"";return `<button type="button" class="code copy" data-code="${E(code)}"><span class="code-val">${E(code)}</span><span class="copy-label">Copy</span></button>`}
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".copy");if(!b)return;e.preventDefault();e.stopPropagation();const code=b.getAttribute("data-code");try{const ta=document.createElement("textarea");ta.value=code;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.left="-9999px";document.body.appendChild(ta);ta.focus();ta.select();document.execCommand("copy");ta.remove()}catch(err){}if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(code).catch(()=>{});const label=b.querySelector(".copy-label");if(label)label.textContent="Copied";b.classList.add("on");clearTimeout(b._t);b._t=setTimeout(()=>{if(label)label.textContent="Copy";b.classList.remove("on")},2500)});
@@ -44,16 +56,16 @@ upd.textContent="Updated "+wat(L.updated_at);
 rounds.innerHTML=(L.rounds||[]).map(r=>`<p class="sum">${E(r.summary||"")}</p>`).join("")||'<p class="mut">No settled rounds yet.</p>';
 const A=L.bots.filter(b=>b.role=="analyst"),S=b=>b.stats||{};
 A.sort((x,y)=>(S(y).streak||0)-(S(x).streak||0)||(S(y).win_rate_30d??-1)-(S(x).win_rate_30d??-1)||(S(y).roi??-1e9)-(S(x).roi??-1e9)||x.num-y.num);
-lb.innerHTML=A.map((b,i)=>{const s=S(b),[p,n]=prog(s.xp||0);return`<tr class="bot" data-id="${b.id}"><td>${i+1}</td><td><b>${String(b.num).padStart(2,"0")}</b> ${E(b.name)}</td><td><span class="b r">${s.rank||"Rookie Analyst"}</span></td><td><span class="b ${s.tier||"Normal"}">${s.tier=="Hot"?"🔥 ":s.tier=="Cold"?"❄️ ":""}${s.tier||"Normal"}</span></td><td>${s.streak||0}</td><td>${s.best_streak||0}</td><td>${s.xp||0}<div class="bar" title="Next: ${n}"><i style="width:${p}%"></i></div></td><td>${s.wins||0}-${s.losses||0}</td><td>${pct(s.win_rate)}</td><td>${units(s.roi)}</td><td>${s.shield?"🛡️":"–"}</td></tr>`}).join("");
+lb.innerHTML=A.map((b,i)=>{const s=S(b),[p,n]=prog(s.xp||0);return`<tr class="bot" data-id="${b.id}"><td>${i+1}</td><td><b>${String(b.num).padStart(2,"0")}</b> ${E(b.name)}</td><td><span class="b r">${s.rank||"Rookie Analyst"}</span></td><td><span class="b ${s.tier||"Normal"}">${s.tier=="Hot"?"🔥 ":s.tier=="Cold"?"❄️ ":""}${s.tier||"Normal"}</span></td><td><span class="b d">${E(streakTier(s))}</span></td><td>${s.streak||0}</td><td>${s.best_streak||0}</td><td>${s.xp||0}<div class="bar" title="Next: ${n}"><i style="width:${p}%"></i></div></td><td>${s.wins||0}-${s.losses||0}</td><td>${pct(s.win_rate)}</td><td>${units(s.roi)}</td><td>${s.shield?"🛡️":"–"}</td></tr>`}).join("");
 const name=id=>(L.bots.find(b=>b.id==id)||{}).name||id;
 const T=L.tickets.filter(t=>t.date==todayWAT);
 today.innerHTML=T.length?T.map(t=>`<div class="tk"><div><b>${E(name(t.bot))}</b>${t.odds==null?"":` · ${od(t.odds)}`} · <span class="${t.result||"pending"}">${t.result||"pending"}</span></div>${codeHtml(t)}${legs(t)}</div>`).join(""):'<p class="mut">No tickets submitted yet today.</p>';
 document.querySelectorAll("tr.bot").forEach(r=>r.onclick=()=>{const b=L.bots.find(x=>x.id==r.dataset.id),s=S(b),[p,n]=prog(s.xp||0);
 const H=L.tickets.filter(t=>t.bot==b.id).sort((x,y)=>y.date.localeCompare(x.date));
-mc.innerHTML=`<button class="x" onclick="modal.style.display='none'">×</button><h2>${String(b.num).padStart(2,"0")} · ${E(b.name)}</h2><span class="b r">${s.rank}</span> <span class="b ${s.tier}">${s.tier}</span>
-<div class="grid"><div>W-L<b>${s.wins||0}-${s.losses||0}</b></div><div>Win rate<b>${pct(s.win_rate)}</b></div><div>ROI<b>${units(s.roi)}</b></div><div>XP<b>${s.xp||0}</b></div><div>Streak<b>${s.streak||0}</b></div><div>Status<b>${E(s.tier||"Normal")}</b></div><div>Rank<b>${E(s.rank||"Rookie Analyst")}</b></div><div>30d<b>${pct(s.win_rate_30d)}</b></div><div>Best<b>${s.best_streak||0}</b></div><div>Shield<b>${s.shield?"🛡️":"–"}</b></div></div>
+mc.innerHTML=`<button class="x" onclick="modal.style.display='none'">×</button><h2>${String(b.num).padStart(2,"0")} · ${E(b.name)}</h2><span class="b r">${s.rank}</span> <span class="b ${s.tier}">${s.tier}</span> <span class="b d">${E(streakTier(s))}</span>
+<div class="grid"><div>W-L<b>${s.wins||0}-${s.losses||0}</b></div><div>Win rate<b>${pct(s.win_rate)}</b></div><div>ROI<b>${units(s.roi)}</b></div><div>XP<b>${s.xp||0}</b></div><div>Streak<b>${s.streak||0}</b></div><div>Status<b>${E(s.tier||"Normal")}</b></div><div>Streak tier<b>${E(streakTier(s))}</b></div><div>Rank<b>${E(s.rank||"Rookie Analyst")}</b></div><div>30d<b>${pct(s.win_rate_30d)}</b></div><div>Best<b>${s.best_streak||0}</b></div><div>Shield<b>${s.shield?"🛡️":"–"}</b></div></div>
 <div class="mut">Next rank: ${n}</div><div class="bar" style="width:100%"><i style="width:${p}%"></i></div><h2 style="margin-top:14px">Ticket history</h2>
 ${H.length?`<table style="min-width:0"><tr><th>Date</th><th>Legs</th><th>Odds</th><th>Result</th><th>XP</th></tr>${H.map(t=>`<tr><td>${t.date}</td><td>${(t.legs||[]).length}</td><td>${t.odds==null?"–":od(t.odds)}</td><td class="${t.result||"pending"}">${t.result||"pending"}</td><td>${t.xp==null?"–":(t.xp>0?"+":"")+t.xp}</td></tr><tr><td colspan="5" style="white-space:normal">${codeHtml(t)}${legs(t)}</td></tr>`).join("")}</table>`:'<p class="mut">No tickets yet.</p>'}`;modal.style.display="flex"});
 modal.onclick=e=>{if(e.target==modal)modal.style.display="none"};
-}).catch(e=>lb.innerHTML=`<tr><td colspan=11>Could not load league.json (${e})</td></tr>`);
+}).catch(e=>lb.innerHTML=`<tr><td colspan=12>Could not load league.json (${e})</td></tr>`);
 </script></body></html>
