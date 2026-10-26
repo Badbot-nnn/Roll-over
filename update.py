@@ -20,9 +20,10 @@ for b in L["bots"]:
         stake+=L["stake"]
         if t["result"]=="won":
             streak+=1; w+=1; ret+=L["stake"]*t["odds"]
-            g=100*k*smult(streak)*{"Hot":1.1,"Cold":0.8}.get(tier,1.0)
+            g=100*k*smult(streak)*(1.1 if tier=="Hot" else 1.0)
             g+={3:150,7:500,14:1500}.get(streak,0)
             if streak==7: shield=True; shield_date=d
+            last_loss=None
         else:
             l+=1; g=-60*k; last_loss=d
             if shield: shield=False
@@ -38,12 +39,14 @@ for b in L["bots"]:
       roi=round((ret-stake)/L["stake"],2) if stake else None,shield=shield)
 by={}
 for t in L["tickets"]:
-    if t.get("result") not in ("won","lost"): continue
-    rec=by.setdefault(t["date"],{"won":0,"lost":0}); rec[t["result"]]+=1
+    res=t.get("result")
+    if res not in ("won","lost","void"): continue
+    rec=by.setdefault(t["date"],{"won":0,"lost":0,"void":0}); rec[res]+=1
 L["rounds"]=[]
 for i,d in enumerate(sorted(by),1):
-    day=dt.date.fromisoformat(d); w,ls=by[d]["won"],by[d]["lost"]
+    day=dt.date.fromisoformat(d); w,ls,vd=by[d]["won"],by[d]["lost"],by[d]["void"]
     when=f"{DAYS[day.weekday()]} {day.day} {MONS[day.month-1]}"
-    L["rounds"].append({"round":i,"date":d,"won":w,"lost":ls,"summary":f"Round {i} · {when} · {w} won, {ls} lost"})
+    bits=[f"{w} won", f"{ls} lost"]+( [f"{vd} void"] if vd else [] )
+    L["rounds"].append({"round":i,"date":d,"won":w,"lost":ls,"void":vd,"summary":f"Round {i} · {when} · {', '.join(bits)}"})
 L["updated_at"]=dt.datetime.now(WAT).isoformat(timespec="seconds")
 json.dump(L,open("league.json","w"),indent=2,ensure_ascii=False); print("updated",L["updated_at"])

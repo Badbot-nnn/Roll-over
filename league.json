@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "league": "League HQ",
-  "updated_at": "2026-10-25T07:40:53+01:00",
+  "updated_at": "2026-10-26T06:15:16+01:00",
   "stake": 1,
   "bots": [
     {
@@ -15,16 +15,16 @@
       "name": "Corner Accountant",
       "role": "analyst",
       "stats": {
-        "xp": 0,
+        "xp": 85.1,
         "rank": "Rookie Analyst",
-        "tier": "Cold",
-        "streak": 0,
-        "best_streak": 0,
-        "wins": 0,
+        "tier": "Normal",
+        "streak": 1,
+        "best_streak": 1,
+        "wins": 1,
         "losses": 1,
-        "win_rate": 0.0,
-        "win_rate_30d": 0.0,
-        "roi": -1.0,
+        "win_rate": 50.0,
+        "win_rate_30d": 50.0,
+        "roi": 0.18,
         "shield": false
       }
     },
@@ -34,16 +34,16 @@
       "name": "Spread Surgeon",
       "role": "analyst",
       "stats": {
-        "xp": 82.0,
+        "xp": 158.7,
         "rank": "Rookie Analyst",
         "tier": "Normal",
-        "streak": 1,
-        "best_streak": 1,
-        "wins": 1,
+        "streak": 2,
+        "best_streak": 2,
+        "wins": 2,
         "losses": 0,
         "win_rate": 100.0,
         "win_rate_30d": 100.0,
-        "roi": 1.12,
+        "roi": 2.14,
         "shield": false
       }
     },
@@ -53,16 +53,16 @@
       "name": "Baseline Guard",
       "role": "analyst",
       "stats": {
-        "xp": 0,
+        "xp": 70.0,
         "rank": "Rookie Analyst",
-        "tier": "Cold",
-        "streak": 0,
-        "best_streak": 0,
-        "wins": 0,
+        "tier": "Normal",
+        "streak": 1,
+        "best_streak": 1,
+        "wins": 1,
         "losses": 1,
-        "win_rate": 0.0,
-        "win_rate_30d": 0.0,
-        "roi": -1.0,
+        "win_rate": 50.0,
+        "win_rate_30d": 50.0,
+        "roi": -0.1,
         "shield": false
       }
     },
@@ -72,16 +72,16 @@
       "name": "Fortress Keeper",
       "role": "analyst",
       "stats": {
-        "xp": 0,
+        "xp": 80.5,
         "rank": "Rookie Analyst",
-        "tier": "Cold",
-        "streak": 0,
-        "best_streak": 0,
-        "wins": 0,
+        "tier": "Normal",
+        "streak": 1,
+        "best_streak": 1,
+        "wins": 1,
         "losses": 1,
-        "win_rate": 0.0,
-        "win_rate_30d": 0.0,
-        "roi": -1.0,
+        "win_rate": 50.0,
+        "win_rate_30d": 50.0,
+        "roi": 0.09,
         "shield": false
       }
     },
@@ -97,10 +97,10 @@
         "streak": 0,
         "best_streak": 0,
         "wins": 0,
-        "losses": 1,
+        "losses": 2,
         "win_rate": 0.0,
         "win_rate_30d": 0.0,
-        "roi": -1.0,
+        "roi": -2.0,
         "shield": false
       }
     },
@@ -110,16 +110,16 @@
       "name": "Lockdown",
       "role": "analyst",
       "stats": {
-        "xp": 79.4,
+        "xp": 158.3,
         "rank": "Rookie Analyst",
         "tier": "Normal",
-        "streak": 1,
-        "best_streak": 1,
-        "wins": 1,
+        "streak": 2,
+        "best_streak": 2,
+        "wins": 2,
         "losses": 0,
         "win_rate": 100.0,
         "win_rate_30d": 100.0,
-        "roi": 1.07,
+        "roi": 2.13,
         "shield": false
       }
     },
@@ -129,16 +129,16 @@
       "name": "Half Hunter",
       "role": "analyst",
       "stats": {
-        "xp": 76.2,
+        "xp": 21.1,
         "rank": "Rookie Analyst",
-        "tier": "Normal",
-        "streak": 1,
+        "tier": "Cold",
+        "streak": 0,
         "best_streak": 1,
         "wins": 1,
-        "losses": 0,
-        "win_rate": 100.0,
-        "win_rate_30d": 100.0,
-        "roi": 1.01,
+        "losses": 1,
+        "win_rate": 50.0,
+        "win_rate_30d": 50.0,
+        "roi": 0.01,
         "shield": false
       }
     },
@@ -167,16 +167,16 @@
       "name": "Diamond Reader",
       "role": "analyst",
       "stats": {
-        "xp": 66.0,
+        "xp": 18.4,
         "rank": "Rookie Analyst",
-        "tier": "Normal",
-        "streak": 1,
+        "tier": "Cold",
+        "streak": 0,
         "best_streak": 1,
         "wins": 1,
-        "losses": 0,
-        "win_rate": 100.0,
-        "win_rate_30d": 100.0,
-        "roi": 0.83,
+        "losses": 1,
+        "win_rate": 50.0,
+        "win_rate_30d": 50.0,
+        "roi": -0.17,
         "shield": false
       }
     },
@@ -186,16 +186,16 @@
       "name": "Women's Game Scout",
       "role": "analyst",
       "stats": {
-        "xp": 77.3,
+        "xp": 33.6,
         "rank": "Rookie Analyst",
-        "tier": "Normal",
-        "streak": 1,
+        "tier": "Cold",
+        "streak": 0,
         "best_streak": 1,
         "wins": 1,
-        "losses": 0,
-        "win_rate": 100.0,
-        "win_rate_30d": 100.0,
-        "roi": 1.03,
+        "losses": 1,
+        "win_rate": 50.0,
+        "win_rate_30d": 50.0,
+        "roi": 0.03,
         "shield": false
       }
     },
@@ -243,16 +243,16 @@
       "name": "Cup Cynic",
       "role": "analyst",
       "stats": {
-        "xp": 83.5,
+        "xp": 39.4,
         "rank": "Rookie Analyst",
-        "tier": "Normal",
-        "streak": 1,
+        "tier": "Cold",
+        "streak": 0,
         "best_streak": 1,
         "wins": 1,
-        "losses": 0,
-        "win_rate": 100.0,
-        "win_rate_30d": 100.0,
-        "roi": 1.15,
+        "losses": 1,
+        "win_rate": 50.0,
+        "win_rate_30d": 50.0,
+        "roi": 0.15,
         "shield": false
       }
     },
@@ -262,16 +262,16 @@
       "name": "Asian Desk",
       "role": "analyst",
       "stats": {
-        "xp": 0,
+        "xp": 74.0,
         "rank": "Rookie Analyst",
-        "tier": "Cold",
-        "streak": 0,
-        "best_streak": 0,
-        "wins": 0,
+        "tier": "Normal",
+        "streak": 1,
+        "best_streak": 1,
+        "wins": 1,
         "losses": 1,
-        "win_rate": 0.0,
-        "win_rate_30d": 0.0,
-        "roi": -1.0,
+        "win_rate": 50.0,
+        "win_rate_30d": 50.0,
+        "roi": -0.03,
         "shield": false
       }
     },
@@ -281,16 +281,16 @@
       "name": "Contrarian Auditor",
       "role": "analyst",
       "stats": {
-        "xp": 80.5,
+        "xp": 36.8,
         "rank": "Rookie Analyst",
-        "tier": "Normal",
-        "streak": 1,
+        "tier": "Cold",
+        "streak": 0,
         "best_streak": 1,
         "wins": 1,
-        "losses": 0,
-        "win_rate": 100.0,
-        "win_rate_30d": 100.0,
-        "roi": 1.09,
+        "losses": 1,
+        "win_rate": 50.0,
+        "win_rate_30d": 50.0,
+        "roi": 0.09,
         "shield": false
       }
     }
@@ -716,120 +716,132 @@
       "bot": "a01",
       "date": "2026-10-25",
       "odds": 2.18,
-      "result": "pending",
+      "result": "won",
       "booking_code": "TDJ8SX",
       "legs": [
         {
           "match": "Atalanta v Frosinone",
           "market": "Corners",
           "pick": "Over 8.5",
-          "odds": 1.39
+          "odds": 1.39,
+          "result": "won"
         },
         {
           "match": "Lecce v Juventus",
           "market": "Corners",
           "pick": "Over 7.5",
-          "odds": 1.34
+          "odds": 1.34,
+          "result": "won"
         },
         {
           "match": "Liverpool v Brighton",
           "market": "Over/Under",
           "pick": "Over 1.5",
-          "odds": 1.17
+          "odds": 1.17,
+          "result": "won"
         }
       ],
-      "xp": null
+      "xp": 85.1
     },
     {
       "bot": "a02",
       "date": "2026-10-25",
       "odds": 2.02,
-      "result": "pending",
+      "result": "won",
       "booking_code": "H8EEKH",
       "legs": [
         {
           "match": "Lakers @ Jazz",
           "market": "Moneyline",
           "pick": "Lakers",
-          "odds": 1.45
+          "odds": 1.45,
+          "result": "won"
         },
         {
           "match": "Pacers @ Nets",
           "market": "Moneyline",
           "pick": "Pacers",
-          "odds": 1.39
+          "odds": 1.39,
+          "result": "won"
         }
       ],
-      "xp": null
+      "xp": 76.7
     },
     {
       "bot": "a03",
       "date": "2026-10-25",
       "odds": 1.9,
-      "result": "pending",
+      "result": "won",
       "booking_code": "H3J01R",
       "legs": [
         {
           "match": "Medvedev",
           "market": "Match Winner",
           "pick": "Medvedev",
-          "odds": 1.25
+          "odds": 1.25,
+          "result": "won"
         },
         {
           "match": "Olympiacos v Kalamata",
           "market": "Match Winner",
           "pick": "Olympiacos",
-          "odds": 1.17
+          "odds": 1.17,
+          "result": "won"
         },
         {
           "match": "Sparta Prague v Slovácko",
           "market": "Match Winner",
           "pick": "Sparta Prague",
-          "odds": 1.3
+          "odds": 1.3,
+          "result": "won"
         }
       ],
-      "xp": null
+      "xp": 70.0
     },
     {
       "bot": "a04",
       "date": "2026-10-25",
       "odds": 2.09,
-      "result": "pending",
+      "result": "won",
       "booking_code": "W55G22",
       "legs": [
         {
           "match": "Club Brugge v Sint-Truiden",
           "market": "Match Winner",
           "pick": "Club Brugge",
-          "odds": 1.37
+          "odds": 1.37,
+          "result": "won"
         },
         {
           "match": "Marseille v Le Havre",
           "market": "Draw No Bet",
           "pick": "Marseille",
-          "odds": 1.21
+          "odds": 1.21,
+          "result": "won"
         },
         {
           "match": "Real Sociedad v Levante",
           "market": "Draw No Bet",
           "pick": "Real Sociedad",
-          "odds": 1.26
+          "odds": 1.26,
+          "result": "won"
         }
       ],
-      "xp": null
+      "xp": 80.5
     },
     {
       "bot": "a05",
       "date": "2026-10-25",
       "odds": 1.93,
-      "result": "pending",
+      "result": "lost",
       "booking_code": "JHVGKP",
       "legs": [
         {
           "match": "PSV v Feyenoord",
           "market": "Over/Under",
           "pick": "Over 2.5",
-          "odds": 1.33
+          "odds": 1.33,
+          "result": "lost"
         },
         {
           "match": "Hoffenheim v Leverkusen",
@@ -844,42 +856,45 @@
           "odds": 1.11
         }
       ],
-      "xp": null
+      "xp": -43.1
     },
     {
       "bot": "a06",
       "date": "2026-10-25",
       "odds": 2.06,
-      "result": "pending",
+      "result": "won",
       "booking_code": "XZKMC4",
       "legs": [
         {
           "match": "Celta v Betis",
           "market": "Over/Under",
           "pick": "Under 3.5",
-          "odds": 1.48
+          "odds": 1.48,
+          "result": "won"
         },
         {
           "match": "Udinese v Milan",
           "market": "Over/Under",
           "pick": "Under 3.5",
-          "odds": 1.39
+          "odds": 1.39,
+          "result": "won"
         }
       ],
-      "xp": null
+      "xp": 78.9
     },
     {
       "bot": "a07",
       "date": "2026-10-25",
       "odds": 2.32,
-      "result": "pending",
+      "result": "lost",
       "booking_code": "JCXDR2",
       "legs": [
         {
           "match": "Inter v Fiorentina",
           "market": "Team Total",
           "pick": "Inter Over 1.5",
-          "odds": 1.35
+          "odds": 1.35,
+          "result": "won"
         },
         {
           "match": "Bayern @ Freiburg",
@@ -891,15 +906,16 @@
           "match": "Barcelona v Real Madrid",
           "market": "Team Total",
           "pick": "Barcelona Over 1.5",
-          "odds": 1.3
+          "odds": 1.3,
+          "result": "lost"
         }
       ],
-      "xp": null
+      "xp": -55.1
     },
     {
       "bot": "a08",
       "date": "2026-10-25",
-      "result": "pending",
+      "result": "void",
       "legs": [],
       "xp": null
     },
@@ -907,63 +923,68 @@
       "bot": "a09",
       "date": "2026-10-25",
       "odds": 2.07,
-      "result": "pending",
+      "result": "lost",
       "booking_code": "ZF4VNB",
       "legs": [
         {
           "match": "NEC v Groningen",
           "market": "Over/Under",
           "pick": "Over 2.5",
-          "odds": 1.45
+          "odds": 1.45,
+          "result": "won"
         },
         {
           "match": "AZ v Twente",
           "market": "BTTS",
           "pick": "Yes",
-          "odds": 1.43
+          "odds": 1.43,
+          "result": "lost"
         }
       ],
-      "xp": null
+      "xp": -47.6
     },
     {
       "bot": "a10",
       "date": "2026-10-25",
       "odds": 1.95,
-      "result": "pending",
+      "result": "lost",
       "booking_code": "ZU6T6J",
       "legs": [
         {
           "match": "Man Utd W v Man City W",
           "market": "Over/Under",
           "pick": "Over 2.5",
-          "odds": 1.44
+          "odds": 1.44,
+          "result": "lost"
         },
         {
           "match": "Liverpool W v London City",
           "market": "Over/Under",
           "pick": "Over 1.5",
-          "odds": 1.17
+          "odds": 1.17,
+          "result": "won"
         },
         {
           "match": "Birmingham W v Charlton W",
           "market": "Double Chance",
           "pick": "1X",
-          "odds": 1.16
+          "odds": 1.16,
+          "result": "won"
         }
       ],
-      "xp": null
+      "xp": -43.7
     },
     {
       "bot": "a11",
       "date": "2026-10-25",
-      "result": "pending",
+      "result": "void",
       "legs": [],
       "xp": null
     },
     {
       "bot": "a12",
       "date": "2026-10-25",
-      "result": "pending",
+      "result": "void",
       "legs": [],
       "xp": null
     },
@@ -971,14 +992,15 @@
       "bot": "a13",
       "date": "2026-10-25",
       "odds": 1.96,
-      "result": "pending",
+      "result": "lost",
       "booking_code": "Y5PPA6",
       "legs": [
         {
           "match": "Athletic v Getafe",
           "market": "Over/Under",
           "pick": "Under 3.5",
-          "odds": 1.25
+          "odds": 1.25,
+          "result": "lost"
         },
         {
           "match": "Celtic @ Hibs",
@@ -987,35 +1009,37 @@
           "odds": 1.57
         }
       ],
-      "xp": null
+      "xp": -44.1
     },
     {
       "bot": "a14",
       "date": "2026-10-25",
       "odds": 1.97,
-      "result": "pending",
+      "result": "won",
       "booking_code": "T810GJ",
       "legs": [
         {
           "match": "Estoril v Moreirense",
           "market": "Over/Under",
           "pick": "Over 1.5",
-          "odds": 1.31
+          "odds": 1.31,
+          "result": "won"
         },
         {
           "match": "Union SG v Cercle Brugge",
           "market": "Over/Under",
           "pick": "Over 2.5",
-          "odds": 1.5
+          "odds": 1.5,
+          "result": "won"
         }
       ],
-      "xp": null
+      "xp": 74.0
     },
     {
       "bot": "a15",
       "date": "2026-10-25",
       "odds": 1.95,
-      "result": "pending",
+      "result": "lost",
       "booking_code": "UYSAX6",
       "legs": [
         {
@@ -1028,7 +1052,8 @@
           "match": "Nacional v Braga",
           "market": "Over/Under",
           "pick": "Over 1.5",
-          "odds": 1.29
+          "odds": 1.29,
+          "result": "lost"
         },
         {
           "match": "Sporting v Académico Viseu",
@@ -1037,7 +1062,7 @@
           "odds": 1.12
         }
       ],
-      "xp": null
+      "xp": -43.7
     }
   ],
   "rounds": [
@@ -1046,7 +1071,16 @@
       "date": "2026-10-24",
       "won": 7,
       "lost": 8,
+      "void": 0,
       "summary": "Round 1 · Sat 24 Oct · 7 won, 8 lost"
+    },
+    {
+      "round": 2,
+      "date": "2026-10-25",
+      "won": 6,
+      "lost": 6,
+      "void": 3,
+      "summary": "Round 2 · Sun 25 Oct · 6 won, 6 lost, 3 void"
     }
   ]
 }
