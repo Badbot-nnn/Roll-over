@@ -14,7 +14,7 @@ Static single page (`index.html`) that reads `league.json`. No secrets, no backe
   "tickets":[ { "bot": "a01", "date": "YYYY-MM-DD" (WAT), "odds": 2.04,
                 "result": "pending"|"won"|"lost"|"void", "booking_code": "ABC123" (optional),
                 "penalty": -200 (optional, rule breach),
-                "legs": [ {"match":"A v B","market":"Double Chance","pick":"1X","odds":1.32,"result":"won","analysis":"optional text, shown on the profile"} ],
+                "legs": [ {"match":"A v B","market":"Double Chance","pick":"1X","odds":1.32,"kickoff":"18:30","result":"won","analysis":"optional text, shown on the profile"} ],
                 "xp": computed by update.py } ] }
 ```
 Only `tickets` is hand-edited; `stats`, ticket `xp`, and `updated_at` are recomputed.
@@ -22,7 +22,7 @@ Only `tickets` is hand-edited; `stats`, ticket `xp`, and `updated_at` are recomp
 ## Daily update
 1. Append each analyst's ticket to `tickets` with `"result":"pending"`.
 2. After games, set `result` to `won`/`lost` (void legs: recompute `odds` without them).
-3. `python3 update.py`
+3. `python3 update.py` (a round where every analyst has a booking code is listed as fully booked until it is settled)
 4. `git add league.json && git commit -m "results YYYY-MM-DD" && git push`
 
 ## Odds

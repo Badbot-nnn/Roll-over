@@ -38,16 +38,25 @@ for b in L["bots"]:
       win_rate=round(100*w/(w+l),1) if w+l else None,
       win_rate_30d=round(100*sum(t["result"]=="won" for t in s30)/len(s30),1) if s30 else None,
       roi=round((ret-stake)/L["stake"],2) if stake else None,shield=shield)
+analysts=[b["id"] for b in L["bots"] if b["role"]=="analyst"]
 by={}
 for t in L["tickets"]:
     res=t.get("result")
     if res not in ("won","lost","void"): continue
     rec=by.setdefault(t["date"],{"won":0,"lost":0,"void":0}); rec[res]+=1
+booked={}
+for t in L["tickets"]:
+    if t.get("booking_code"): booked.setdefault(t["date"],set()).add(t["bot"])
+full=[d for d,bots in booked.items() if d not in by and set(analysts)<=bots]
 L["rounds"]=[]
-for i,d in enumerate(sorted(by),1):
-    day=dt.date.fromisoformat(d); w,ls,vd=by[d]["won"],by[d]["lost"],by[d]["void"]
-    when=f"{DAYS[day.weekday()]} {day.day} {MONS[day.month-1]}"
-    bits=[f"{w} won", f"{ls} lost"]+( [f"{vd} void"] if vd else [] )
-    L["rounds"].append({"round":i,"date":d,"won":w,"lost":ls,"void":vd,"summary":f"Round {i} · {when} · {', '.join(bits)}"})
+for i,d in enumerate(sorted(set(by)|set(full)),1):
+    day=dt.date.fromisoformat(d); when=f"{DAYS[day.weekday()]} {day.day} {MONS[day.month-1]}"
+    if d in by:
+        w,ls,vd=by[d]["won"],by[d]["lost"],by[d]["void"]
+        bits=[f"{w} won", f"{ls} lost"]+( [f"{vd} void"] if vd else [] )
+        L["rounds"].append({"round":i,"date":d,"won":w,"lost":ls,"void":vd,"summary":f"Round {i} · {when} · {', '.join(bits)}"})
+    else:
+        n=len(booked[d])
+        L["rounds"].append({"round":i,"date":d,"booked":n,"analysts":len(analysts),"summary":f"Round {i} · {when} · fully booked ({n}/{len(analysts)})"})
 L["updated_at"]=dt.datetime.now(WAT).isoformat(timespec="seconds")
 json.dump(L,open("league.json","w"),indent=2,ensure_ascii=False); print("updated",L["updated_at"])

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "league": "League HQ",
-  "updated_at": "2026-10-26T06:43:46+01:00",
+  "updated_at": "2026-10-26T06:53:26+01:00",
   "stake": 1,
   "bots": [
     {
@@ -1308,8 +1308,27 @@
     {
       "bot": "a11",
       "date": "2026-10-26",
+      "odds": 1.82,
       "result": "pending",
-      "legs": [],
+      "booking_code": "PRY2Z5",
+      "legs": [
+        {
+          "match": "PFC CSKA Sofia v Ludogorets",
+          "market": "Double Chance",
+          "pick": "12",
+          "odds": 1.31,
+          "kickoff": "18:30",
+          "analysis": "CSKA and Ludogorets is a title-level Bulgarian derby where a draw is the main risk."
+        },
+        {
+          "match": "FC Shinnik Yaroslavl v Spartak Kostroma",
+          "market": "Double Chance",
+          "pick": "1X",
+          "odds": 1.39,
+          "kickoff": "17:30",
+          "analysis": "Shinnik at home in Russian FNL with Kostroma covered by the draw."
+        }
+      ],
       "xp": null
     },
     {
@@ -1417,6 +1436,13 @@
       "lost": 6,
       "void": 3,
       "summary": "Round 2 · Sun 25 Oct · 6 won, 6 lost, 3 void"
+    },
+    {
+      "round": 3,
+      "date": "2026-10-26",
+      "booked": 15,
+      "analysts": 15,
+      "summary": "Round 3 · Mon 26 Oct · fully booked (15/15)"
     }
   ]
 }
