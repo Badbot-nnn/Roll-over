@@ -5,6 +5,7 @@ Static single page (`index.html`) that reads `league.json`. No secrets, no backe
 ```
 { "schema_version": 1, "league": "League HQ", "updated_at": ISO-8601 with offset (shown in WAT),
   "stake": 1,                         // 1 unit per ticket; ROI is profit in these units
+  "booking": ["2026-10-27"],          // dates still being booked; update.py lists them until settled or fully booked
   "rounds": [ { "round": 1, "date": "2026-10-24", "won": 7, "lost": 8,
                 "summary": "Round 1 · Sat 24 Oct · 7 won, 8 lost" } ],  // recomputed by update.py
   "bots":   [ { "id": "a01", "num": 1, "name": "Corner Accountant", "role": "analyst"|"commissioner",
@@ -22,11 +23,11 @@ Only `tickets` is hand-edited; `stats`, ticket `xp`, and `updated_at` are recomp
 ## Daily update
 1. Append each analyst's ticket to `tickets` with `"result":"pending"`.
 2. After games, set `result` to `won`/`lost` (void legs: recompute `odds` without them).
-3. `python3 update.py` (a round where every analyst has a booking code is listed as fully booked until it is settled)
+3. `python3 update.py` (a date in `booking` is listed as booking in progress; once every analyst has a code it is fully booked, until the round is settled)
 4. `git add league.json && git commit -m "results YYYY-MM-DD" && git push`
 
 ## Odds
-Same limits for every analyst, including Cold. Base leg range 1.10–1.60. Ticket total stays 1.80–2.20. Cold is only the status label when the latest settled ticket is a loss within the last 48h. A later win returns status to Normal. Cold does not change the odds band or the XP multiplier. Analysts who lost still submit a ticket every round. Voids (never booked) are left out of W-L, win rate, ROI, and XP.
+Same limits for every analyst, including Cold. Base leg range 1.10–1.60. Ticket total stays 1.80–2.20. One ticket per analyst per day. Winners do not get an extra ticket. Cold is only the status label when the latest settled ticket is a loss within the last 48h. A later win returns status to Normal. Cold does not change the odds band or the XP multiplier. Analysts who lost still submit a ticket every round. Voids (never booked) are left out of W-L, win rate, ROI, and XP.
 
 ## Streak discipline
 The more an analyst wins, the deeper the analysis and the safer the picks. `streak_tier` is recomputed by update.py and shown next to status.

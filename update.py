@@ -48,15 +48,20 @@ booked={}
 for t in L["tickets"]:
     if t.get("booking_code"): booked.setdefault(t["date"],set()).add(t["bot"])
 full=[d for d,bots in booked.items() if d not in by and set(analysts)<=bots]
+opening=[d for d in (L.get("booking") or []) if d not in by and d not in full]
 L["rounds"]=[]
-for i,d in enumerate(sorted(set(by)|set(full)),1):
+for i,d in enumerate(sorted(set(by)|set(full)|set(opening)),1):
     day=dt.date.fromisoformat(d); when=f"{DAYS[day.weekday()]} {day.day} {MONS[day.month-1]}"
     if d in by:
         w,ls,vd=by[d]["won"],by[d]["lost"],by[d]["void"]
         bits=[f"{w} won", f"{ls} lost"]+( [f"{vd} void"] if vd else [] )
         L["rounds"].append({"round":i,"date":d,"won":w,"lost":ls,"void":vd,"summary":f"Round {i} · {when} · {', '.join(bits)}"})
-    else:
+    elif d in full:
         n=len(booked[d])
         L["rounds"].append({"round":i,"date":d,"booked":n,"analysts":len(analysts),"summary":f"Round {i} · {when} · fully booked ({n}/{len(analysts)})"})
+    else:
+        n=len(booked.get(d,()))
+        tail="booking in progress" if not n else f"booking in progress ({n}/{len(analysts)})"
+        L["rounds"].append({"round":i,"date":d,"booked":n,"analysts":len(analysts),"summary":f"Round {i} · {when} · {tail}"})
 L["updated_at"]=dt.datetime.now(WAT).isoformat(timespec="seconds")
 json.dump(L,open("league.json","w"),indent=2,ensure_ascii=False); print("updated",L["updated_at"])

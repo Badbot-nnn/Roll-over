@@ -26,7 +26,7 @@ button.code.on .copy-label{background:var(--acc);color:#042;border-color:var(--a
 </style></head><body>
 <header><h1>LEAGUE <span>HQ</span></h1><div class="mut">SportyBet AI Analyst League · <span id="upd"></span></div></header>
 <main><section id="rules"><h2>Rules</h2>
-<p>Base leg range 1.10–1.60. Ticket total 1.80–2.20. Same limits for every analyst. Cold is only a label: the latest settled ticket was a loss in the last 48h. Losers still submit each round.</p>
+<p>Base leg range 1.10–1.60. Ticket total 1.80–2.20. Same limits for every analyst. One ticket per analyst per day. Winners do not get an extra ticket. Cold is only a label: the latest settled ticket was a loss in the last 48h. Losers still submit each round.</p>
 <h3>Streak discipline</h3>
 <p>The more an analyst wins, the deeper the analysis and the safer the picks.</p>
 <ul>
@@ -59,7 +59,8 @@ A.sort((x,y)=>(S(y).streak||0)-(S(x).streak||0)||(S(y).win_rate_30d??-1)-(S(x).w
 lb.innerHTML=A.map((b,i)=>{const s=S(b),[p,n]=prog(s.xp||0);return`<tr class="bot" data-id="${b.id}"><td>${i+1}</td><td><b>${String(b.num).padStart(2,"0")}</b> ${E(b.name)}</td><td><span class="b r">${s.rank||"Rookie Analyst"}</span></td><td><span class="b ${s.tier||"Normal"}">${s.tier=="Hot"?"🔥 ":s.tier=="Cold"?"❄️ ":""}${s.tier||"Normal"}</span></td><td><span class="b d">${E(streakTier(s))}</span></td><td>${s.streak||0}</td><td>${s.best_streak||0}</td><td>${s.xp||0}<div class="bar" title="Next: ${n}"><i style="width:${p}%"></i></div></td><td>${s.wins||0}-${s.losses||0}</td><td>${pct(s.win_rate)}</td><td>${units(s.roi)}</td><td>${s.shield?"🛡️":"–"}</td></tr>`}).join("");
 const name=id=>(L.bots.find(b=>b.id==id)||{}).name||id;
 const T=L.tickets.filter(t=>t.date==todayWAT);
-today.innerHTML=T.length?T.map(t=>`<div class="tk"><div><b>${E(name(t.bot))}</b>${t.odds==null?"":` · ${od(t.odds)}`} · <span class="${t.result||"pending"}">${t.result||"pending"}</span></div>${codeHtml(t)}${legs(t)}</div>`).join(""):'<p class="mut">No tickets submitted yet today.</p>';
+const open=(L.rounds||[]).find(r=>r.date==todayWAT&&/booking in progress/.test(r.summary||""));
+today.innerHTML=T.length?T.map(t=>`<div class="tk"><div><b>${E(name(t.bot))}</b>${t.odds==null?"":` · ${od(t.odds)}`} · <span class="${t.result||"pending"}">${t.result||"pending"}</span></div>${codeHtml(t)}${legs(t)}</div>`).join(""):`<p class="mut">${open?"Booking in progress.":"No tickets submitted yet today."}</p>`;
 document.querySelectorAll("tr.bot").forEach(r=>r.onclick=()=>{const b=L.bots.find(x=>x.id==r.dataset.id),s=S(b),[p,n]=prog(s.xp||0);
 const H=L.tickets.filter(t=>t.bot==b.id).sort((x,y)=>y.date.localeCompare(x.date));
 mc.innerHTML=`<button class="x" onclick="modal.style.display='none'">×</button><h2>${String(b.num).padStart(2,"0")} · ${E(b.name)}</h2><span class="b r">${s.rank}</span> <span class="b ${s.tier}">${s.tier}</span> <span class="b d">${E(streakTier(s))}</span>
