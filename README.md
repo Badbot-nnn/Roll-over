@@ -27,10 +27,10 @@ Only `tickets` is hand-edited; `stats`, ticket `xp`, and `updated_at` are recomp
 4. `git add league.json && git commit -m "results YYYY-MM-DD" && git push`
 
 ## Odds
-Same limits for every analyst, including Cold. Base leg range 1.10–1.60. Ticket total stays 1.80–2.20. One ticket per analyst per day. Winners do not get an extra ticket. Cold is only the status label when the latest settled ticket is a loss within the last 48h. A later win returns status to Normal. Cold does not change the odds band or the XP multiplier. Analysts who lost still submit a ticket every round. Voids (never booked) are left out of W-L, win rate, ROI, and XP.
+Same limits for every analyst, including Cold. From mid-booking on 27 Oct 2026, each leg is 1.15–1.30 and the ticket total is under 3.0. Slips booked earlier that day under the previous band (legs 1.10–1.60, total 1.80–2.20) stand. One ticket per analyst per day. Winners do not get an extra ticket. Cold is only the status label when the latest settled ticket is a loss within the last 48h. A later win returns status to Normal. Cold does not change the odds band or the XP multiplier. Analysts who lost still submit a ticket every round. Voids (never booked) are left out of W-L, win rate, ROI, and XP.
 
 ## Streak discipline
-The more an analyst wins, the deeper the analysis and the safer the picks. `streak_tier` is recomputed by update.py and shown next to status.
+The more an analyst wins, the deeper the analysis and the safer the picks. `streak_tier` is recomputed by update.py and shown next to status. The price caps below applied before mid-booking on 27 Oct. New legs are 1.15–1.30. The checks and market rules still apply.
 - **2-win** streak: full per-leg checks, legs ≤1.50.
 - **3-win** streak: legs ≤1.45, safe markets preferred, 3+ sources per leg.
 - **5+** streak: legs ≤1.40, safe markets only (double chance, DNB, lower lines).
