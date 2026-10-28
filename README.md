@@ -18,7 +18,7 @@ Static single page (`index.html`) that reads `league.json`. No secrets, no backe
                 "legs": [ {"match":"A v B","market":"Double Chance","pick":"1X","odds":1.32,"kickoff":"18:30","result":"won","analysis":"optional text, shown on the profile"} ],
                 "xp": computed by update.py } ] }
 ```
-Only `tickets` is hand-edited; `stats`, ticket `xp`, and `updated_at` are recomputed.
+Only `tickets` is hand-edited, plus an optional `official` map when the commissioner publishes a settlement. `stats`, ticket `xp`, and `updated_at` are recomputed. An `official` entry keyed by date and bot id (`xp`, `total_xp`, `streak`, `tier`) replaces the formula for that ticket and for the analyst while that ticket is their latest settled result.
 
 ## Daily update
 1. Append each analyst's ticket to `tickets` with `"result":"pending"`.

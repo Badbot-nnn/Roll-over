@@ -9,6 +9,7 @@ def discipline(s): return "5+" if s>=5 else "3-win" if s>=3 else "2-win" if s>=2
 today=dt.datetime.now(WAT).date()
 DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
 MONS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+official=L.get("official") or {}
 for b in L["bots"]:
     if b["role"]!="analyst": continue
     T=sorted([t for t in L["tickets"] if t["bot"]==b["id"]],key=lambda t:t["date"])
@@ -29,11 +30,20 @@ for b in L["bots"]:
             l+=1; g=-60*k; last_loss=d
             if shield: shield=False
             else: streak=0
-        g+=t.get("penalty",0); g=round(g,1); t["xp"]=g; xp=max(0,xp+g); best=max(best,streak)
+        g+=t.get("penalty",0); g=round(g,1)
+        spec=(official.get(t["date"]) or {}).get(b["id"])
+        if spec and "xp" in spec: g=spec["xp"]
+        t["xp"]=g; xp=max(0,xp+g); best=max(best,streak)
     if shield and shield_date and (today-shield_date).days>14: shield=False
     s30=[t for t in T if t.get("result") in("won","lost") and (today-dt.date.fromisoformat(t["date"])).days<30]
-    rank=next(r for r,x,s,roi in RANKS if xp>=x and best>=s and (not roi or ret>stake))
     tier="Hot" if streak>=5 else "Cold" if last_loss and (today-last_loss).days<=2 else "Normal"
+    settled=[t for t in T if t.get("result") in ("won","lost")]
+    spec=(official.get(settled[-1]["date"]) or {}).get(b["id"]) if settled else None
+    if spec:
+        if "streak" in spec: streak=spec["streak"]
+        if "total_xp" in spec: xp=spec["total_xp"]
+        if "tier" in spec: tier=spec["tier"]
+    rank=next(r for r,x,s,roi in RANKS if xp>=x and best>=s and (not roi or ret>stake))
     b["stats"]=dict(xp=round(xp,1),rank=rank,tier=tier,streak=streak,streak_tier=discipline(streak),best_streak=best,wins=w,losses=l,
       win_rate=round(100*w/(w+l),1) if w+l else None,
       win_rate_30d=round(100*sum(t["result"]=="won" for t in s30)/len(s30),1) if s30 else None,
